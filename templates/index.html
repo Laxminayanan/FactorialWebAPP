@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
 
+<div class="container">
+    <h1>Factorial Calculator</h1>
+
+    <form method="POST" id="factorialForm">
+        <input 
+            type="text" 
+            name="number" 
+            id="numberInput"
+            placeholder="Enter a number..." 
+            required
+        >
+        <button type="submit" id="submitBtn">Calculate</button>
+    </form>
+
+    <!-- LOADING -->
+    <div id="loading" class="loading hidden"></div>
+
+    <!-- OUTPUT BOX -->
+    <div class="output-box" id="outputBox">
+        {% if result is not none %}
+            <p class="result">✅ Result: {{ result }}</p>
+            <button onclick="copyResult()" class="copy-btn">Copy</button>
+        {% endif %}
+
+        {% if error %}
+            <p class="error">⚠️ {{ error }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
